@@ -4,16 +4,22 @@ import { z } from "zod";
 
 const searchParamsSchema = z.object({
   date: z.coerce.date(),
+  title: z.string().optional(),
 });
 
 function App() {
   const [searchParams] = useSearchParams();
-  const { date } = searchParamsSchema.parse(Object.fromEntries(searchParams));
+  const { date, title } = searchParamsSchema.parse(
+    Object.fromEntries(searchParams)
+  );
   const distance = formatDistanceToNow(date, { addSuffix: true });
 
   return (
-    <div>
-      <h1>{distance}</h1>
+    <div className="app">
+      <div>
+        {title && <h1>{title}</h1>}
+        <p>{distance}</p>
+      </div>
     </div>
   );
 }
