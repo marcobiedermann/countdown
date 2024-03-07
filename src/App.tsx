@@ -1,5 +1,7 @@
-import { formatDistanceToNow } from "date-fns";
+import { formatDuration, intervalToDuration } from "date-fns";
+import { useState } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
+import { useBoolean, useInterval } from "react-use";
 import { z } from "zod";
 
 const searchParamsSchema = z.object({
@@ -9,21 +11,36 @@ const searchParamsSchema = z.object({
 
 function App() {
   const [searchParams] = useSearchParams();
+  const [now, setNow] = useState(new Date());
+  const [delay] = useState(1000);
+  const [isRunning] = useBoolean(true);
   const { date, title } = searchParamsSchema.parse(
     Object.fromEntries(searchParams)
+  );
+
+  useInterval(
+    () => {
+      setNow(new Date());
+    },
+    isRunning ? delay : null
   );
 
   if (!date) {
     return <Navigate to="/new" />;
   }
 
-  const distance = formatDistanceToNow(date, { addSuffix: true });
+  const duration = intervalToDuration({
+    start: now,
+    end: date,
+  });
+
+  const output = formatDuration(duration);
 
   return (
     <div className="app">
       <div>
         {title && <h1>{title}</h1>}
-        <p>{distance}</p>
+        <p>{output}</p>
       </div>
     </div>
   );
