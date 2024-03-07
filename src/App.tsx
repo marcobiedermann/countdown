@@ -1,9 +1,9 @@
 import { formatDistanceToNow } from "date-fns";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { z } from "zod";
 
 const searchParamsSchema = z.object({
-  date: z.coerce.date(),
+  date: z.coerce.date().optional(),
   title: z.string().optional(),
 });
 
@@ -12,6 +12,11 @@ function App() {
   const { date, title } = searchParamsSchema.parse(
     Object.fromEntries(searchParams)
   );
+
+  if (!date) {
+    return <Navigate to="/new" />;
+  }
+
   const distance = formatDistanceToNow(date, { addSuffix: true });
 
   return (
