@@ -7,6 +7,7 @@ import {
 import App from './App.tsx';
 import './index.css';
 import NewPage from './New.tsx';
+import SettingsPage from './Settings.tsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/new",
     element: <NewPage />
+  },
+  {
+    path: "/settings",
+    element: <SettingsPage />
   },
 ]);
 
