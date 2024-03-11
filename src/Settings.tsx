@@ -21,14 +21,23 @@ function SettingsPage() {
     <div>
       <h1>Settings</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="language">Language:</label>
-        <select id="language" {...register("language")}>
-          <option value="de">German</option>
-          <option value="en">English</option>
-        </select>
-
-        <button type="submit">Save</button>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="form__field">
+          <label htmlFor="language" className="form__label">
+            Language
+          </label>
+          <select
+            id="language"
+            {...register("language")}
+            className="form__input"
+          >
+            <option value="de">German</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <button type="submit" className="button button--primary button--pill">
+          Save
+        </button>
       </form>
     </div>
   );

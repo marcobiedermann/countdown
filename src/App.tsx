@@ -1,8 +1,12 @@
-import { formatDuration, intervalToDuration } from "date-fns";
+import { differenceInDays, intervalToDuration } from "date-fns";
 import { useState } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { useBoolean, useInterval } from "react-use";
 import { z } from "zod";
+
+function formatTime(value: number) {
+  return value.toString().padStart(2, "0");
+}
 
 const searchParamsSchema = z.object({
   date: z.coerce.date().optional(),
@@ -15,31 +19,54 @@ function App() {
   const [delay] = useState(1000);
   const [isRunning] = useBoolean(true);
   const { date, title } = searchParamsSchema.parse(
-    Object.fromEntries(searchParams)
+    Object.fromEntries(searchParams),
   );
 
   useInterval(
     () => {
       setNow(new Date());
     },
-    isRunning ? delay : null
+    isRunning ? delay : null,
   );
 
   if (!date) {
     return <Navigate to="/new" />;
   }
 
-  const duration = intervalToDuration({
+  const days = differenceInDays(date, now);
+  const {
+    hours = 0,
+    minutes = 0,
+    seconds = 0,
+  } = intervalToDuration({
     start: now,
     end: date,
   });
 
-  const output = formatDuration(duration);
-
   return (
     <div>
-      {title && <h1>{title}</h1>}
-      <p>{output}</p>
+      {title && <h1 className="title">{title}</h1>}
+      <div className="date-time">
+        <div className="date-time__fragment">
+          <span className="date-time__value">{formatTime(days)}</span>
+          <span className="date-time__unit">Days</span>
+        </div>
+        <span className="date-time__separator">:</span>
+        <div className="date-time__fragment">
+          <span className="date-time__value">{formatTime(hours)}</span>
+          <span className="date-time__unit">Hours</span>
+        </div>
+        <span className="date-time__separator">:</span>
+        <div className="date-time__fragment">
+          <span className="date-time__value">{formatTime(minutes)}</span>
+          <span className="date-time__unit">Minutes</span>
+        </div>
+        <span className="date-time__separator">:</span>
+        <div className="date-time__fragment">
+          <span className="date-time__value">{formatTime(seconds)}</span>
+          <span className="date-time__unit">Seconds</span>
+        </div>
+      </div>
     </div>
   );
 }
