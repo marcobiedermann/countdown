@@ -18,20 +18,18 @@ function SettingsPage() {
   }
 
   return (
-    <div className="app">
-      <div>
-        <h1>Settings</h1>
+    <div>
+      <h1>Settings</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="language">Language:</label>
-          <select id="language" {...register("language")}>
-            <option value="de">German</option>
-            <option value="en">English</option>
-          </select>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="language">Language:</label>
+        <select id="language" {...register("language")}>
+          <option value="de">German</option>
+          <option value="en">English</option>
+        </select>
 
-          <button type="submit">Save</button>
-        </form>
-      </div>
+        <button type="submit">Save</button>
+      </form>
     </div>
   );
 }

@@ -37,11 +37,9 @@ function App() {
   const output = formatDuration(duration);
 
   return (
-    <div className="app">
-      <div>
-        {title && <h1>{title}</h1>}
-        <p>{output}</p>
-      </div>
+    <div>
+      {title && <h1>{title}</h1>}
+      <p>{output}</p>
     </div>
   );
 }
