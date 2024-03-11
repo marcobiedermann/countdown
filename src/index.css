@@ -1,22 +1,144 @@
-body {
-  font-family: sans-serif;
-  line-height: 1.5;
-  margin: 0;
+:root {
+  --color-base: #fff;
+  --color-background: #414141;
 }
 
-.app {
-  display: grid;
-  place-items: center;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-base);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
   min-block-size: 100vh;
-  text-align: center;
-  font-size: 2.5rem;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
+  font-weight: 600;
   margin-block: 0 0.125rem;
+}
+
+input {
+  border: 0;
+  color: inherit;
+  font: inherit;
 }
 
 p {
   margin-block: 0.5em 1.5em;
+}
+
+.app {
+  display: grid;
+  margin: auto;
+  max-inline-size: 40em;
+  min-block-size: 100vh;
+  place-items: center;
+  text-align: center;
+}
+
+.button {
+  border: 1px solid;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5em 1.5em;
+  place-content: center;
+  place-items: center;
+}
+
+.button--primary {
+  background-color: var(--color-primary);
+}
+
+.button--secondary {
+  background-color: var(--color-secondary);
+}
+
+.button--pill {
+  border-radius: 999em;
+}
+
+.button--round {
+  border-radius: 100%;
+  padding: 1em;
+}
+
+.form {
+  display: grid;
+  gap: 1em;
+}
+
+.form__field {
+  display: grid;
+  gap: 0.5em;
+}
+
+.form__label {
+  display: block;
+  font-weight: 600;
+}
+
+.form__input {
+  border-radius: 0.25em;
+  background-color: transparent;
+  color: var(--color-base);
+  border: 1px solid;
+  padding: 0.5em 1em;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.fixed--padded {
+  --padding: 1.5em;
+}
+
+.fixed--bottom {
+  bottom: var(--padding, 0);
+}
+
+.fixed--right {
+  right: var(--padding, 0);
+}
+
+.date-time {
+  align-items: center;
+  display: flex;
+  gap: 1em;
+}
+
+.date-time__fragment {
+  display: grid;
+  gap: 0.5em;
+  text-align: center;
+}
+
+.date-time__value {
+  font-size: 5rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.date-time__unit {
+  color: #9a9a9a;
 }

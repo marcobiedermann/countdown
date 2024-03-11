@@ -5,9 +5,11 @@ function Layout() {
   return (
     <div className="app">
       <Outlet />
-      <Link to="/settings">
-        <FiSettings />
-      </Link>
+      <div className="fixed fixed--padded fixed--bottom fixed--right">
+        <Link to="/settings" className="button button--secondary button--round">
+          <FiSettings />
+        </Link>
+      </div>
     </div>
   );
 }

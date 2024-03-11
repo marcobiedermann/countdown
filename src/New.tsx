@@ -32,24 +32,36 @@ function NewPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input type="text" id="title" {...register("title")} />
+    <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <div className="form__field">
+        <label htmlFor="title" className="form__label">
+          Title
+        </label>
+        <input
+          type="text"
+          id="title"
+          className="form__input"
+          {...register("title")}
+        />
         {errors.title && <span>{errors.title.message}</span>}
       </div>
-      <div>
-        <label htmlFor="date">Date:</label>
+      <div className="form__field">
+        <label htmlFor="date" className="form__label">
+          Date
+        </label>
         <input
           type="date"
           id="date"
+          className="form__input"
           {...register("date", {
             valueAsDate: true,
           })}
         />
         {errors.date && <span>{errors.date.message}</span>}
       </div>
-      <button type="submit">Create</button>
+      <button type="submit" className="button button--primary button--pill">
+        Create
+      </button>
     </form>
   );
 }
