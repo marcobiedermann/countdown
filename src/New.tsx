@@ -1,7 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formatISO } from "date-fns";
-import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { FiCalendar } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
@@ -16,9 +19,10 @@ function NewPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const {
-    register,
-    handleSubmit,
+    control,
     formState: { errors },
+    handleSubmit,
+    register,
   } = useForm<FormData>({
     resolver: zodResolver(formDataSchema),
   });
@@ -51,13 +55,20 @@ function NewPage() {
         <label htmlFor="date" className="form__label">
           {t("date")}
         </label>
-        <input
-          type="date"
-          id="date"
-          className="form__input"
-          {...register("date", {
-            valueAsDate: true,
-          })}
+        <Controller
+          control={control}
+          name="date"
+          render={({ field }) => (
+            <DatePicker
+              className="form__input"
+              icon={<FiCalendar />}
+              onChange={(date) => field.onChange(date)}
+              placeholderText="Select date"
+              selected={field.value}
+              showIcon
+              toggleCalendarOnIconClick
+            />
+          )}
         />
         {errors.date && <span>{errors.date.message}</span>}
       </div>
