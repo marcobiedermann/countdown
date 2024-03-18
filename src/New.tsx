@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formatISO } from "date-fns";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
@@ -13,6 +14,7 @@ type FormData = z.infer<typeof formDataSchema>;
 
 function NewPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -35,7 +37,7 @@ function NewPage() {
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <div className="form__field">
         <label htmlFor="title" className="form__label">
-          Title
+          {t("title")}
         </label>
         <input
           type="text"
@@ -47,7 +49,7 @@ function NewPage() {
       </div>
       <div className="form__field">
         <label htmlFor="date" className="form__label">
-          Date
+          {t("date")}
         </label>
         <input
           type="date"
@@ -60,7 +62,7 @@ function NewPage() {
         {errors.date && <span>{errors.date.message}</span>}
       </div>
       <button type="submit" className="button button--primary button--pill">
-        Create
+        {t("create")}
       </button>
     </form>
   );

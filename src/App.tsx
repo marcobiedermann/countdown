@@ -1,5 +1,6 @@
 import { differenceInDays, intervalToDuration } from "date-fns";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { useBoolean, useInterval } from "react-use";
 import { z } from "zod";
@@ -15,6 +16,7 @@ const searchParamsSchema = z.object({
 
 function App() {
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const [now, setNow] = useState(new Date());
   const [delay] = useState(1000);
   const [isRunning] = useBoolean(true);
@@ -49,22 +51,22 @@ function App() {
       <div className="date-time">
         <div className="date-time__fragment">
           <span className="date-time__value">{formatTime(days)}</span>
-          <span className="date-time__unit">Days</span>
+          <span className="date-time__unit">{t("days")}</span>
         </div>
         <span className="date-time__separator">:</span>
         <div className="date-time__fragment">
           <span className="date-time__value">{formatTime(hours)}</span>
-          <span className="date-time__unit">Hours</span>
+          <span className="date-time__unit">{t("hours")}</span>
         </div>
         <span className="date-time__separator">:</span>
         <div className="date-time__fragment">
           <span className="date-time__value">{formatTime(minutes)}</span>
-          <span className="date-time__unit">Minutes</span>
+          <span className="date-time__unit">{t("minutes")}</span>
         </div>
         <span className="date-time__separator">:</span>
         <div className="date-time__fragment">
           <span className="date-time__value">{formatTime(seconds)}</span>
-          <span className="date-time__unit">Seconds</span>
+          <span className="date-time__unit">{t("seconds")}</span>
         </div>
       </div>
     </div>
