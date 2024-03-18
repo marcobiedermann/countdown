@@ -1,12 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formatISO } from "date-fns";
-import DatePicker from "react-datepicker";
+import { de } from "date-fns/locale";
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FiCalendar } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
+
+registerLocale('de', de)
 
 const formDataSchema = z.object({
   date: z.date(),
@@ -17,7 +20,7 @@ type FormData = z.infer<typeof formDataSchema>;
 
 function NewPage() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     control,
     formState: { errors },
@@ -36,6 +39,8 @@ function NewPage() {
 
     navigate(`/?${searchParams.toString()}`);
   }
+
+  setDefaultLocale(i18n.language)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
@@ -62,8 +67,8 @@ function NewPage() {
             <DatePicker
               className="form__input"
               icon={<FiCalendar />}
+              locale={i18n.language}
               onChange={(date) => field.onChange(date)}
-              placeholderText="Select date"
               selected={field.value}
               showIcon
               toggleCalendarOnIconClick
