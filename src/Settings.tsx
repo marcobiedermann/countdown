@@ -1,7 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { z } from "zod";
+import { selectLanguage, setLanguage } from "./slices/settings";
+import { useAppDispatch } from "./store";
 
 const formDataSchema = z.object({
   language: z.string(),
@@ -11,16 +14,19 @@ type FormData = z.infer<typeof formDataSchema>;
 
 function SettingsPage() {
   const { t, i18n } = useTranslation();
+  const dispatch = useAppDispatch();
+  const language = useSelector(selectLanguage);
   const { register, handleSubmit } = useForm<FormData>({
     resolver: zodResolver(formDataSchema),
     defaultValues: {
-      language: i18n.language,
+      language,
     },
   });
 
   function onSubmit(data: FormData) {
     const { language } = data;
 
+    dispatch(setLanguage(language));
     i18n.changeLanguage(language);
   }
 
