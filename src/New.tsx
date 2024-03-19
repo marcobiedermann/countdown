@@ -9,7 +9,7 @@ import { FiCalendar } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
-registerLocale('de', de)
+registerLocale("de", de);
 
 const formDataSchema = z.object({
   date: z.date(),
@@ -40,7 +40,7 @@ function NewPage() {
     navigate(`/?${searchParams.toString()}`);
   }
 
-  setDefaultLocale(i18n.language)
+  setDefaultLocale(i18n.language);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
