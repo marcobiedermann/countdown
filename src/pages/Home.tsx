@@ -14,7 +14,7 @@ const searchParamsSchema = z.object({
   title: z.string().optional(),
 });
 
-function App() {
+function Home() {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const [now, setNow] = useState(new Date());
@@ -74,4 +74,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

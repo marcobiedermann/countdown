@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { z } from 'zod';
-import { selectLanguage, setLanguage } from './slices/settings';
-import { useAppDispatch } from './store';
+import { selectLanguage, setLanguage } from '../slices/settings';
+import { useAppDispatch } from '../store';
 
 const formDataSchema = z.object({
   language: z.string(),
