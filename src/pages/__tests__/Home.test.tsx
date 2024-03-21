@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { render } from '../utils/test-utils';
-import HomePage from './Home';
+import { render } from '../../utils/test-utils';
+import HomePage from '../Home';
 
 describe('HomePage', () => {
   beforeEach(() => {

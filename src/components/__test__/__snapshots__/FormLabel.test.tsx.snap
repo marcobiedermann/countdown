@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormLabel > should render correctly 1`] = `
+<div>
+  <label
+    class="form__label"
+    for="input"
+  >
+    Label
+  </label>
+</div>
+`;

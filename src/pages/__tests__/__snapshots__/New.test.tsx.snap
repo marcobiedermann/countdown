@@ -84,7 +84,7 @@ exports[`NewPage > should render correctly 1`] = `
       </div>
     </div>
     <button
-      class="button button--primary button--pill"
+      class="button button--pill button--primary"
       type="submit"
     >
       Create
