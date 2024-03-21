@@ -4,7 +4,6 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 
 function Layout() {
   const { pathname } = useLocation();
-
   const isSettings = pathname === '/settings';
 
   return (

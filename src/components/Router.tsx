@@ -1,8 +1,10 @@
+import { lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Default';
-import Home from '../pages/Home';
-import NewPage from '../pages/New';
-import SettingsPage from '../pages/Settings';
+
+const Home = lazy(() => import('../pages/Home'));
+const NewPage = lazy(() => import('../pages/New'));
+const SettingsPage = lazy(() => import('../pages/Settings'));
 
 const router = createBrowserRouter([
   {
