@@ -1,13 +1,15 @@
+import 'react-datepicker/dist/react-datepicker.css';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formatISO } from 'date-fns';
 import { de } from 'date-fns/locale';
 import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FiCalendar } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
+
 import { Button, Form, FormField, FormLabel } from '../components';
 
 registerLocale('de', de);

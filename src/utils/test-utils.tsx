@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+
 import deTranslation from '../../public/locales/de/translation.json';
 import enTranslation from '../../public/locales/en/translation.json';
 import { options } from '../i18n';
@@ -12,11 +13,11 @@ import { store } from '../store';
 i18n.use(initReactI18next).init({
   ...options,
   resources: {
-    en: {
-      translation: enTranslation,
-    },
     de: {
       translation: deTranslation,
+    },
+    en: {
+      translation: enTranslation,
     },
   },
 });

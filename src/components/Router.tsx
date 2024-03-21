@@ -1,5 +1,6 @@
 import { lazy } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import Layout from '../layouts/Default';
 
 const Home = lazy(() => import('../pages/Home'));
@@ -8,21 +9,21 @@ const SettingsPage = lazy(() => import('../pages/Settings'));
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
     children: [
       {
-        path: '/',
         element: <Home />,
+        path: '/',
       },
       {
-        path: '/new',
         element: <NewPage />,
+        path: '/new',
       },
       {
-        path: '/settings',
         element: <SettingsPage />,
+        path: '/settings',
       },
     ],
+    element: <Layout />,
   },
 ]);
 

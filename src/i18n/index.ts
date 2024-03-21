@@ -3,11 +3,11 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 
 const options = {
-  lng: 'en',
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
+  lng: 'en',
 };
 
 i18n.use(initReactI18next).use(Backend).init(options);
