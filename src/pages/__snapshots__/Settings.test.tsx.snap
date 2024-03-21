@@ -1,0 +1,47 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsPage > should render correctly 1`] = `
+<div>
+  <div>
+    <h1>
+      Settings
+    </h1>
+    <form
+      class="form"
+    >
+      <div
+        class="form__field"
+      >
+        <label
+          class="form__label"
+          for="language"
+        >
+          Language
+        </label>
+        <select
+          class="form__input"
+          id="language"
+          name="language"
+        >
+          <option
+            value="de"
+          >
+            German
+          </option>
+          <option
+            value="en"
+          >
+            English
+          </option>
+        </select>
+      </div>
+      <button
+        class="button button--primary button--pill"
+        type="submit"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+`;
