@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { useBoolean, useInterval } from 'react-use';
 import { z } from 'zod';
+
 import { DateTime } from '../components';
 import { formatTime } from '../utils/formatters';
 
@@ -37,8 +38,8 @@ function Home() {
     minutes = 0,
     seconds = 0,
   } = intervalToDuration({
-    start: now,
     end: date,
+    start: now,
   });
 
   return (
@@ -47,20 +48,20 @@ function Home() {
       <DateTime
         fragments={[
           {
-            value: date < now ? `-${formatTime(days)}` : formatTime(days),
             unit: t('days'),
+            value: date < now ? `-${formatTime(days)}` : formatTime(days),
           },
           {
-            value: formatTime(hours),
             unit: t('hours'),
+            value: formatTime(hours),
           },
           {
-            value: formatTime(minutes),
             unit: t('minutes'),
+            value: formatTime(minutes),
           },
           {
-            value: formatTime(seconds),
             unit: t('seconds'),
+            value: formatTime(seconds),
           },
         ]}
       />

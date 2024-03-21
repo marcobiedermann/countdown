@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { FiSettings, FiX } from 'react-icons/fi';
 import { Outlet, useLocation } from 'react-router-dom';
+
 import { Button } from '../components';
 
 function Layout() {

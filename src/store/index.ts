@@ -4,13 +4,14 @@ import {
   FLUSH,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
   REHYDRATE,
-  persistReducer,
-  persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
 import pkg from '../../package.json';
 import settingsReducer from '../slices/settings';
 
@@ -26,13 +27,13 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+  reducer: persistedReducer,
 });
 
 const persistor = persistStore(store);

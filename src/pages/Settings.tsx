@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { z } from 'zod';
+
 import { Button, Form, FormField, FormLabel } from '../components';
 import { selectLanguage, setLanguage } from '../slices/settings';
 import { useAppDispatch } from '../store';
@@ -18,10 +19,10 @@ function SettingsPage() {
   const dispatch = useAppDispatch();
   const language = useSelector(selectLanguage);
   const { register, handleSubmit } = useForm<FormData>({
-    resolver: zodResolver(formDataSchema),
     defaultValues: {
       language,
     },
+    resolver: zodResolver(formDataSchema),
   });
 
   function onSubmit(data: FormData) {

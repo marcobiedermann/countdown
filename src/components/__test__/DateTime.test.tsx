@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { render } from '../../utils/test-utils';
 import DateTime from '../DateTime';
 
@@ -8,16 +9,16 @@ describe('DateTime', () => {
       <DateTime
         fragments={[
           {
-            value: '01',
             unit: 'Hours',
+            value: '01',
           },
           {
-            value: '01',
             unit: 'Minutes',
+            value: '01',
           },
           {
-            value: '01',
             unit: 'Seconds',
+            value: '01',
           },
         ]}
       />,
