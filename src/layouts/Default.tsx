@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { FiSettings, FiX } from 'react-icons/fi';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import { Button } from '../components';
 
 function Layout() {
   const { pathname } = useLocation();
@@ -13,13 +14,13 @@ function Layout() {
       </Suspense>
       <div className="fixed fixed--padded fixed--bottom fixed--right">
         {isSettings ? (
-          <Link to=".." className="button button--secondary button--round">
+          <Button to=".." style="round" variant="secondary">
             <FiX />
-          </Link>
+          </Button>
         ) : (
-          <Link to="/settings" className="button button--secondary button--round">
+          <Button to="/settings" style="round" variant="secondary">
             <FiSettings />
-          </Link>
+          </Button>
         )}
       </div>
     </div>

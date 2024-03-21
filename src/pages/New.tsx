@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { FiCalendar } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
+import { Button, Form, FormField, FormLabel } from '../components';
 
 registerLocale('de', de);
 
@@ -43,18 +44,14 @@ function NewPage() {
   setDefaultLocale(i18n.language);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form">
-      <div className="form__field">
-        <label htmlFor="title" className="form__label">
-          {t('title')}
-        </label>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormField>
+        <FormLabel htmlFor="title">{t('title')}</FormLabel>
         <input type="text" id="title" className="form__input" {...register('title')} />
         {errors.title && <span>{errors.title.message}</span>}
-      </div>
-      <div className="form__field">
-        <label htmlFor="date" className="form__label">
-          {t('date')}
-        </label>
+      </FormField>
+      <FormField>
+        <FormLabel htmlFor="date">{t('date')}</FormLabel>
         <Controller
           control={control}
           name="date"
@@ -71,11 +68,9 @@ function NewPage() {
           )}
         />
         {errors.date && <span>{errors.date.message}</span>}
-      </div>
-      <button type="submit" className="button button--primary button--pill">
-        {t('create')}
-      </button>
-    </form>
+      </FormField>
+      <Button type="submit">{t('create')}</Button>
+    </Form>
   );
 }
 

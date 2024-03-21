@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > should render link button correctly 1`] = `
+<div>
+  <a
+    class="button button--pill button--primary"
+    href="/"
+  >
+    Button
+  </a>
+</div>
+`;
+
+exports[`Button > should render the submit button correctly 1`] = `
+<div>
+  <button
+    class="button button--pill button--primary"
+    type="submit"
+  >
+    Button
+  </button>
+</div>
+`;

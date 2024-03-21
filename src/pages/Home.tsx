@@ -4,10 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { useBoolean, useInterval } from 'react-use';
 import { z } from 'zod';
-
-function formatTime(value: number) {
-  return Math.abs(value).toString().padStart(2, '0');
-}
+import { DateTime } from '../components';
+import { formatTime } from '../utils/formatters';
 
 const searchParamsSchema = z.object({
   date: z.coerce.date().optional(),
@@ -46,30 +44,26 @@ function Home() {
   return (
     <div>
       {title && <h1 className="title">{title}</h1>}
-      <div className="date-time">
-        <div className="date-time__fragment">
-          <span className="date-time__value">
-            {date < now && '-'}
-            {formatTime(days)}
-          </span>
-          <span className="date-time__unit">{t('days')}</span>
-        </div>
-        <span className="date-time__separator">:</span>
-        <div className="date-time__fragment">
-          <span className="date-time__value">{formatTime(hours)}</span>
-          <span className="date-time__unit">{t('hours')}</span>
-        </div>
-        <span className="date-time__separator">:</span>
-        <div className="date-time__fragment">
-          <span className="date-time__value">{formatTime(minutes)}</span>
-          <span className="date-time__unit">{t('minutes')}</span>
-        </div>
-        <span className="date-time__separator">:</span>
-        <div className="date-time__fragment">
-          <span className="date-time__value">{formatTime(seconds)}</span>
-          <span className="date-time__unit">{t('seconds')}</span>
-        </div>
-      </div>
+      <DateTime
+        fragments={[
+          {
+            value: date < now ? `-${formatTime(days)}` : formatTime(days),
+            unit: t('days'),
+          },
+          {
+            value: formatTime(hours),
+            unit: t('hours'),
+          },
+          {
+            value: formatTime(minutes),
+            unit: t('minutes'),
+          },
+          {
+            value: formatTime(seconds),
+            unit: t('seconds'),
+          },
+        ]}
+      />
     </div>
   );
 }

@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DateTime > should render correctly 1`] = `
+<div>
+  <div
+    class="date-time"
+  >
+    <div
+      class="date-time__fragment"
+    >
+      <span
+        class="date-time__value"
+      >
+        01
+      </span>
+      <span
+        class="date-time__unit"
+      >
+        Hours
+      </span>
+    </div>
+    <span
+      class="date-time__separator"
+    >
+      :
+    </span>
+    <div
+      class="date-time__fragment"
+    >
+      <span
+        class="date-time__value"
+      >
+        01
+      </span>
+      <span
+        class="date-time__unit"
+      >
+        Minutes
+      </span>
+    </div>
+    <span
+      class="date-time__separator"
+    >
+      :
+    </span>
+    <div
+      class="date-time__fragment"
+    >
+      <span
+        class="date-time__value"
+      >
+        01
+      </span>
+      <span
+        class="date-time__unit"
+      >
+        Seconds
+      </span>
+    </div>
+  </div>
+</div>
+`;
