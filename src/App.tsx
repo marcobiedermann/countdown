@@ -6,7 +6,7 @@ import { useBoolean, useInterval } from "react-use";
 import { z } from "zod";
 
 function formatTime(value: number) {
-  return value.toString().padStart(2, "0");
+  return Math.abs(value).toString().padStart(2, "0");
 }
 
 const searchParamsSchema = z.object({
@@ -21,14 +21,14 @@ function App() {
   const [delay] = useState(1000);
   const [isRunning] = useBoolean(true);
   const { date, title } = searchParamsSchema.parse(
-    Object.fromEntries(searchParams),
+    Object.fromEntries(searchParams)
   );
 
   useInterval(
     () => {
       setNow(new Date());
     },
-    isRunning ? delay : null,
+    isRunning ? delay : null
   );
 
   if (!date) {
@@ -50,7 +50,10 @@ function App() {
       {title && <h1 className="title">{title}</h1>}
       <div className="date-time">
         <div className="date-time__fragment">
-          <span className="date-time__value">{formatTime(days)}</span>
+          <span className="date-time__value">
+            {date < now && "-"}
+            {formatTime(days)}
+          </span>
           <span className="date-time__unit">{t("days")}</span>
         </div>
         <span className="date-time__separator">:</span>
