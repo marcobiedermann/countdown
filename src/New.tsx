@@ -1,15 +1,15 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { formatISO } from "date-fns";
-import { de } from "date-fns/locale";
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { Controller, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { FiCalendar } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { formatISO } from 'date-fns';
+import { de } from 'date-fns/locale';
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { FiCalendar } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { z } from 'zod';
 
-registerLocale("de", de);
+registerLocale('de', de);
 
 const formDataSchema = z.object({
   date: z.date(),
@@ -33,7 +33,7 @@ function NewPage() {
   function onSubmit(data: FormData) {
     const { date, title } = data;
     const searchParams = new URLSearchParams({
-      date: formatISO(date, { representation: "date" }),
+      date: formatISO(date, { representation: 'date' }),
       ...(title && { title }),
     });
 
@@ -46,19 +46,14 @@ function NewPage() {
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <div className="form__field">
         <label htmlFor="title" className="form__label">
-          {t("title")}
+          {t('title')}
         </label>
-        <input
-          type="text"
-          id="title"
-          className="form__input"
-          {...register("title")}
-        />
+        <input type="text" id="title" className="form__input" {...register('title')} />
         {errors.title && <span>{errors.title.message}</span>}
       </div>
       <div className="form__field">
         <label htmlFor="date" className="form__label">
-          {t("date")}
+          {t('date')}
         </label>
         <Controller
           control={control}
@@ -78,7 +73,7 @@ function NewPage() {
         {errors.date && <span>{errors.date.message}</span>}
       </div>
       <button type="submit" className="button button--primary button--pill">
-        {t("create")}
+        {t('create')}
       </button>
     </form>
   );
