@@ -1,5 +1,5 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import {
   FLUSH,
   PAUSE,
@@ -9,10 +9,10 @@ import {
   REHYDRATE,
   persistReducer,
   persistStore,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import pkg from "../package.json";
-import settingsReducer from "./slices/settings";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import pkg from '../package.json';
+import settingsReducer from './slices/settings';
 
 const rootReducer = combineReducers({
   settings: settingsReducer,

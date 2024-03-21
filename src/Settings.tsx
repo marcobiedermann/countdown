@@ -1,10 +1,10 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { z } from "zod";
-import { selectLanguage, setLanguage } from "./slices/settings";
-import { useAppDispatch } from "./store";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { z } from 'zod';
+import { selectLanguage, setLanguage } from './slices/settings';
+import { useAppDispatch } from './store';
 
 const formDataSchema = z.object({
   language: z.string(),
@@ -32,24 +32,20 @@ function SettingsPage() {
 
   return (
     <div>
-      <h1>{t("settings")}</h1>
+      <h1>{t('settings')}</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div className="form__field">
           <label htmlFor="language" className="form__label">
-            {t("language")}
+            {t('language')}
           </label>
-          <select
-            id="language"
-            {...register("language")}
-            className="form__input"
-          >
-            <option value="de">{t("german")}</option>
-            <option value="en">{t("english")}</option>
+          <select id="language" {...register('language')} className="form__input">
+            <option value="de">{t('german')}</option>
+            <option value="en">{t('english')}</option>
           </select>
         </div>
         <button type="submit" className="button button--primary button--pill">
-          {t("save")}
+          {t('save')}
         </button>
       </form>
     </div>
