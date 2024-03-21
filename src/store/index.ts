@@ -11,8 +11,8 @@ import {
   persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import pkg from '../package.json';
-import settingsReducer from './slices/settings';
+import pkg from '../../package.json';
+import settingsReducer from '../slices/settings';
 
 const rootReducer = combineReducers({
   settings: settingsReducer,
