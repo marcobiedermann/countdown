@@ -1,4 +1,4 @@
-import { differenceInDays, intervalToDuration } from 'date-fns';
+import { differenceInDays, intervalToDuration, milliseconds } from 'date-fns';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigate, useSearchParams } from 'react-router-dom';
@@ -18,7 +18,7 @@ function Home() {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const [now, setNow] = useState(new Date());
-  const [delay] = useState(1000);
+  const [delay] = useState(milliseconds({ seconds: 1 }));
   const [isRunning] = useBoolean(true);
   const { date, title } = searchParamsSchema.parse(Object.fromEntries(searchParams));
 
