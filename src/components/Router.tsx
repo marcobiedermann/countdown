@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from '../layouts/Default';
 
 const Home = lazy(() => import('../pages/Home'));
+const EventsPage = lazy(() => import('../pages/Events'));
+const EventEditPage = lazy(() => import('../pages/Edit'));
 const NewPage = lazy(() => import('../pages/New'));
 const SettingsPage = lazy(() => import('../pages/Settings'));
 
@@ -13,6 +15,14 @@ const router = createBrowserRouter([
       {
         element: <Home />,
         path: '/',
+      },
+      {
+        element: <EventsPage />,
+        path: '/events',
+      },
+      {
+        element: <EventEditPage />,
+        path: '/events/:eventId/edit',
       },
       {
         element: <NewPage />,

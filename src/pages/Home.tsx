@@ -1,11 +1,14 @@
 import { differenceInDays, intervalToDuration, milliseconds } from 'date-fns';
+import { isEmpty } from 'lodash-es';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { useBoolean, useInterval } from 'react-use';
 import { z } from 'zod';
 
 import { DateTime } from '../components';
+import { selectEvents } from '../slices/events';
+import { useAppSelector } from '../store';
 import { formatTime } from '../utils/formatters';
 
 const searchParamsSchema = z.object({
@@ -16,6 +19,7 @@ const searchParamsSchema = z.object({
 function Home() {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
+  const events = useAppSelector(selectEvents);
   const [now, setNow] = useState(new Date());
   const [delay] = useState(milliseconds({ seconds: 1 }));
   const [isRunning] = useBoolean(true);
@@ -29,6 +33,10 @@ function Home() {
   );
 
   if (!date) {
+    if (!isEmpty(events)) {
+      return <Navigate to="/events" />;
+    }
+
     return <Navigate to="/new" />;
   }
 
@@ -65,6 +73,9 @@ function Home() {
           },
         ]}
       />
+      <p>
+        <Link to="/events">All Events</Link>
+      </p>
     </div>
   );
 }
