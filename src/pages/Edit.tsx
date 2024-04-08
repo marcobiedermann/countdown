@@ -7,12 +7,12 @@ import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FiCalendar } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { z } from 'zod';
 
 import { Button, Form, FormField, FormLabel } from '../components';
-import { addEvent } from '../slices/events';
-import { useAppDispatch } from '../store';
+import { selectEvent, updateEvent } from '../slices/events';
+import { useAppDispatch, useAppSelector } from '../store';
 
 registerLocale('de', de);
 
@@ -23,9 +23,15 @@ const formDataSchema = z.object({
 
 type FormData = z.infer<typeof formDataSchema>;
 
-function NewPage() {
+type Params = {
+  eventId: string;
+};
+
+function EditPage() {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const { eventId } = useParams<Params>();
+  const event = useAppSelector((state) => selectEvent(state, eventId!));
   const {
     control,
     formState: { errors },
@@ -33,18 +39,27 @@ function NewPage() {
     register,
   } = useForm<FormData>({
     resolver: zodResolver(formDataSchema),
+    defaultValues: {
+      date: new Date(event?.date || ''),
+      title: event?.title,
+    },
   });
   const dispatch = useAppDispatch();
 
   function onSubmit(data: FormData) {
     const { date, title } = data;
-    const newEvent = {
+    const updatedEvent = {
       date: formatISO(date, { representation: 'date' }),
       ...(title && { title }),
     };
-    const searchParams = new URLSearchParams(newEvent);
+    const searchParams = new URLSearchParams(updatedEvent);
 
-    dispatch(addEvent(newEvent));
+    dispatch(
+      updateEvent({
+        id: eventId!,
+        ...updatedEvent,
+      }),
+    );
     navigate(`/?${searchParams.toString()}`);
   }
 
@@ -76,9 +91,9 @@ function NewPage() {
         />
         {errors.date && <span>{errors.date.message}</span>}
       </FormField>
-      <Button type="submit">{t('create')}</Button>
+      <Button type="submit">{t('save')}</Button>
     </Form>
   );
 }
 
-export default NewPage;
+export default EditPage;

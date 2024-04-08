@@ -1,22 +1,24 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import {
   FLUSH,
   PAUSE,
   PERSIST,
-  persistReducer,
-  persistStore,
   PURGE,
   REGISTER,
   REHYDRATE,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import pkg from '../../package.json';
+import eventsReducer from '../slices/events';
 import settingsReducer from '../slices/settings';
 
 const rootReducer = combineReducers({
   settings: settingsReducer,
+  events: eventsReducer,
 });
 
 const persistConfig = {
@@ -42,6 +44,7 @@ type RootState = ReturnType<typeof store.getState>;
 type AppDispatch = typeof store.dispatch;
 
 const useAppDispatch: () => AppDispatch = useDispatch;
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export { persistor, store, useAppDispatch };
+export { persistor, store, useAppDispatch, useAppSelector };
 export type { AppDispatch, RootState };

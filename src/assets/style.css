@@ -22,6 +22,7 @@ a {
 }
 
 button {
+  background: none;
   border: 0;
   color: inherit;
   cursor: pointer;
@@ -54,6 +55,14 @@ p {
   text-align: center;
 }
 
+.button-group {
+  display: inline-flex;
+  gap: 0.25em;
+  list-style: none;
+  margin: 0.5em 1.5em;
+  padding: 0;
+}
+
 .button {
   border: 1px solid;
   display: inline-flex;
@@ -79,6 +88,12 @@ p {
 .button--round {
   border-radius: 100%;
   padding: 1em;
+}
+
+.events {
+  list-style: none;
+  margin: 0.5em 1.5em;
+  padding: 0;
 }
 
 .form {
@@ -124,6 +139,7 @@ p {
   align-items: center;
   display: flex;
   gap: 1em;
+  margin-block-end: 1.5em;
 }
 
 .date-time__fragment {

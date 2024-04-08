@@ -1,5 +1,6 @@
 export { default as Button } from './Button';
 export { default as DateTime } from './DateTime';
+export { default as Events } from './Events';
 export { default as Form } from './Form';
 export { default as FormField } from './FormField';
 export { default as FormLabel } from './FormLabel';
