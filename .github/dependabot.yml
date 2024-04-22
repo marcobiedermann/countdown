@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+    groups:
+      eslint:
+        patterns:
+          - '@typescript-eslint/*'
+          - 'eslint*'
+      lodash:
+        patterns:
+          - '@types/lodash-es'
+          - 'lodash-es'
+      react:
+        patterns:
+          - '@types/react-dom'
+          - '@types/react'
+          - 'react-dom'
+          - 'react'
+      react-datepicker:
+        patterns:
+          - '@types/react-datepicker'
+          - 'react-datepicker'
