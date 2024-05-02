@@ -1,11 +1,12 @@
 import Event, { type EventProps } from './Event';
 
 interface EventsProps {
-  events: EventProps[];
+  events: Omit<EventProps, 'onDeleteButtonClick'>[];
+  onDeleteButtonClick: (id: string) => void;
 }
 
 function Events(props: EventsProps) {
-  const { events } = props;
+  const { events, onDeleteButtonClick } = props;
 
   return (
     <ol className="events">
@@ -14,7 +15,7 @@ function Events(props: EventsProps) {
 
         return (
           <li key={id}>
-            <Event {...event} />
+            <Event {...event} onDeleteButtonClick={onDeleteButtonClick} />
           </li>
         );
       })}

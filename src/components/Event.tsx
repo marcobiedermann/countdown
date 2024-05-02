@@ -3,41 +3,30 @@ import { useTranslation } from 'react-i18next';
 import { FiEdit, FiTrash } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
-import { removeEvent } from '../slices/events';
-import { useAppDispatch } from '../store';
-
 interface EventProps {
   id: string;
   date: string;
   title?: string;
+  onDeleteButtonClick: (id: string) => void;
 }
 
 function Event(props: EventProps) {
-  const { id, date, title } = props;
+  const { id, date, title, onDeleteButtonClick } = props;
   const { i18n } = useTranslation();
-  const dispatch = useAppDispatch();
   const now = new Date();
 
   const searchParams = new URLSearchParams({
     date,
     ...(title && { title }),
   });
+  const localeOptions = { locale: i18n.language };
+  const formattedDate = `${intlFormat(date, localeOptions)} (${intlFormatDistance(date, now, { ...localeOptions, unit: 'day' })})`;
 
   return (
     <div>
       {title && <h3>{title}</h3>}
       <p>
-        <Link to={`/?${searchParams}`}>
-          {intlFormat(date, {
-            locale: i18n.language,
-          })}{' '}
-          (
-          {intlFormatDistance(date, now, {
-            unit: 'day',
-            locale: i18n.language,
-          })}
-          )
-        </Link>
+        <Link to={`/?${searchParams}`}>{formattedDate}</Link>
       </p>
       <ul className="button-group">
         <li>
@@ -46,7 +35,7 @@ function Event(props: EventProps) {
           </Link>
         </li>
         <li>
-          <button className="button button--round" onClick={() => dispatch(removeEvent(id))}>
+          <button className="button button--round" onClick={() => onDeleteButtonClick(id)}>
             <FiTrash />
           </button>
         </li>
